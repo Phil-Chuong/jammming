@@ -4,6 +4,7 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+import Spotify from '../../util/Spotify';
 
 
 
@@ -12,48 +13,16 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      searchResults: [{
-        name: 'name 1',
-        artist: 'artist 1',
-        album: 'album 1',
-        id: 1},
-        {
-        name: 'name 2',
-        artist: 'artist 2',
-        album: 'album 2',
-        id: 2},
-        {
-        name: 'name 3',
-        artist: 'artist 3',
-        album: 'album 3',
-        id: 3
-      },
-    ],
+      searchResults: [],
         playlistName: 'My PlayList',
-        playlistTracks: [
-          {
-        name: 'playlistName 1',
-        artist: 'playlistArtist 1',
-        album: 'playlistAlbum 1',
-        id: 4},
-        {
-        name: 'playlistName 2',
-        artist: 'playlistArtist 2',
-        album: 'playlistAlbum 2',
-        id: 5},
-        {
-        name: 'playlistName 3',
-        artist: 'playlistArtist 3',
-        album: 'playlistAlbum 3',
-        id: 6},
-      ]
-
-
+        playlistTracks: []
     };
+
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+    this.search= this.search.bind(this);
   }
 
   addTrack(track) {
@@ -78,17 +47,27 @@ class App extends React.Component {
   }
 
   savePlaylist() {
-   //alert("this method is link to the button correctly")
     const trackUris = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackUris).then(() => {
+      this.setState({
+        playlistName: 'New Playlist',
+        playlistTracks: []
+      })
+    })
   }
 
+  search(term) {
+    Spotify.search(term).then(searchResults => {
+      this.setState({searchResults: searchResults})
+    });
+  }
 
   render() {
     return (
         <div>
           <h1>Ja<span className='highlight'>mmm</span>ing</h1>
           <div className='App'>
-            <SearchBar />
+            <SearchBar onSearch={this.search}/>
             <div className='App-playlist'>
               <SearchResults searchResults={this.state.searchResults}
                               onAdd={this.addTrack}/>
