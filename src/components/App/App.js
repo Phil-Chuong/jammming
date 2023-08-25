@@ -52,7 +52,7 @@ class App extends React.Component {
       this.setState({
         playlistName: 'New Playlist',
         playlistTracks: []
-      });
+      })
     })
   }
 
