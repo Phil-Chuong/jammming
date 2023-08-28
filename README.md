@@ -1,11 +1,11 @@
 # Jammming Desktop app is created for users to create custom playlist and link to their personal Spotify account.
 
 # Prerequisites:
-HTML
-CSS
-JavaScript
-React
-HTTP Requests and Responses
+HTML - 
+CSS - 
+JavaScript - 
+React - 
+HTTP Requests and Responses - 
 Authentication
 
 
