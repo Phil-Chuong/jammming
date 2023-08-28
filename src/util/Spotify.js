@@ -1,5 +1,5 @@
 const clientId ='26cec04f4bfa4f9d86675e9e2448033a';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'http://tame-weather.surge.sh';
 
 let accessToken;
 
