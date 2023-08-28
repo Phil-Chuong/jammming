@@ -1,5 +1,5 @@
 # Features:
-#Users can search for songs by song title.
+# Users can search for songs by song title.
 
 # You can also include functionality to search by other attributes like artist’s name, genre, etc.
 
