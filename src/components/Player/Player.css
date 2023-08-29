@@ -1,0 +1,8 @@
+.player {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center; /* Change to center alignment */
+    align-items: center;
+    padding: 1rem;
+  }
